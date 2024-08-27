@@ -1,4 +1,4 @@
-# music_of_genes
+# Music of genes
  encode DNA sequences into notes (a very early attempt)
 
 
