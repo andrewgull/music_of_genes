@@ -4,36 +4,21 @@
 # AGCT - la sol do ...
 # Am7 - ACEG
 
-#### gm example ####
-
-install.packages("gm")
-
+#### Libraries ####
 library(gm)
-
-music <- 
-  Music() +
-  Meter(4, 4) +
-  Line(c("C5", "D5", "E5", "F5"))
-
-show(music)
+# library(purrr)
+# library(Biostrings)
 
 #### Gene examples ####
-
-# if (!require("BiocManager", quietly = TRUE))
-#   install.packages("BiocManager")
-
-# BiocManager::install("Biostrings")
-
-# library(Biostrings)
 
 ecoli_reca <- as.character(Biostrings::readDNAStringSet("data/ecoli_reca_gene.fna"))
 mtub_reca <- as.character(Biostrings::readDNAStringSet("data/mtub_reca_gene.fna"))
 tthe_reca <- as.character(Biostrings::readDNAStringSet("data/tthe_reca_gene.fna"))
 spne_reca <- as.character(Biostrings::readDNAStringSet("data/spne_reca_gene.fna"))
 
-#### Mapping ####
-install.packages("purrr")
+#### Mapping DNA to notes ####
 
+# maping function
 char2note <- function(dna_char, octave = "1") {
   if (dna_char == "A" |
       dna_char == "G" | dna_char == "C") {
@@ -46,18 +31,19 @@ char2note <- function(dna_char, octave = "1") {
   return(note_octave)
 }
 
+# make gene vectors of different length
 gene_vec <- unlist(strsplit(substr(ecoli_reca[[1]], 1, 224), split = ""))
 gene_vec2 <- unlist(strsplit(substr(mtub_reca[[1]], 1, 108), split = ""))
 gene_vec3 <- unlist(strsplit(substr(tthe_reca[[1]], 1, 104), split = ""))
 gene_vec4 <- unlist(strsplit(substr(spne_reca[[1]], 1, 50), split = ""))
 
+# turn them into note vectors
 notes_vec <- purrr::map_vec(gene_vec, ~ char2note(., octave = 6))
 notes_vec2 <- purrr::map_vec(gene_vec2, ~ char2note(., octave = 5))
 notes_vec3 <- purrr::map_vec(gene_vec3, ~ char2note(., octave = 4))
 notes_vec4 <- purrr::map_vec(gene_vec4, ~ char2note(., octave = 3))
 
 #### add things together ####
-
 gene_music <- 
   Music() +
   Meter(3, 4) +
