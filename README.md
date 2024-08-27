@@ -12,7 +12,7 @@ G - G (sol)
 
 C - C (do)
 
-T - there is on note called T, so it will be E (mi) because A+C+G+E make up Am7 chord.
+T - there is no note called T, so it will be E (mi) because A+C+G+E make up Am7 chord.
 
 That's the basic principle, everything else can vary
 
