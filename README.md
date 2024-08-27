@@ -1,5 +1,5 @@
 # music_of_genes
- encode DNA sequences into notes
+ encode DNA sequences into notes (a very early attempt)
 
 
 ## Description
